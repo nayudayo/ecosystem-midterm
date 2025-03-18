@@ -76,17 +76,83 @@ const foodChainWebData = {
         energy: {
             title: "The Energy Pyramid",
             definition: "A pyramid of energy is a diagram that shows the flow of energy through an ecosystem. It's a type of ecological pyramid that shows how energy is transferred between different trophic levels in a food chain.",
-            importance: "In a healthy ecosystem, there's more energy at the bottom of the energy pyramid than at the top. This abundance supports larger populations at lower levels and ensures energy can flow up to higher levels."
+            importance: "In a healthy ecosystem, there's more energy at the bottom of the energy pyramid than at the top. This abundance supports larger populations at lower levels and ensures energy can flow up to higher levels.",
+            energyFlow: {
+                title: "Energy Flow",
+                points: [
+                    "Only about 10% of energy transfers between trophic levels",
+                    "90% is lost as heat or unused energy",
+                    "Energy decreases as you move up the pyramid",
+                    "Energy cannot be recycled in food chains"
+                ]
+            },
+            trophicLevels: {
+                title: "Trophic Levels",
+                levels: [
+                    {
+                        name: "Primary Producers (Plants)",
+                        energy: "100% energy from sun"
+                    },
+                    {
+                        name: "Primary Consumers",
+                        energy: "10% of producer energy"
+                    },
+                    {
+                        name: "Secondary Consumers",
+                        energy: "1% of producer energy"
+                    },
+                    {
+                        name: "Tertiary Consumers",
+                        energy: "0.1% of producer energy"
+                    }
+                ]
+            },
+            characteristics: {
+                title: "Energy Pyramid Characteristics",
+                points: [
+                    "Always upright (never inverted)",
+                    "Shows energy flow and loss",
+                    "Measured in energy units (kcal/m²/yr)",
+                    "Represents productivity"
+                ]
+            }
         },
         biomass: {
             title: "The Biomass Pyramid",
             definition: "Shows the relative amount of biomass in each of the trophic levels of an ecosystem.",
             description: "Biomass is simply the mass of living things in a particular trophic level. Terrestrial ecosystems usually have much more biomass in plants, such as trees and grass, and less biomass as you move up in trophic levels.",
             levels: {
-                producers: "100kg",
-                primaryConsumers: "100kg",
-                secondaryConsumers: "10kg",
-                tertiaryConsumers: "1kg"
+                title: "Typical Distribution (Terrestrial)",
+                distribution: {
+                    producers: {
+                        mass: "100kg",
+                        examples: "Trees, grass, plants"
+                    },
+                    primaryConsumers: {
+                        mass: "100kg",
+                        examples: "Herbivores"
+                    },
+                    secondaryConsumers: {
+                        mass: "10kg",
+                        examples: "Carnivores"
+                    },
+                    tertiaryConsumers: {
+                        mass: "1kg",
+                        examples: "Top predators"
+                    }
+                }
+            },
+            characteristics: {
+                title: "Biomass Pyramid Characteristics",
+                points: [
+                    "Biomass can be measured in fresh or dry weight",
+                    "Shows standing crop at each level",
+                    "Can be inverted in aquatic ecosystems",
+                    "Affected by organism size and numbers",
+                    "Shows standing crop biomass",
+                    "Measured in mass per unit area",
+                    "Represents accumulated organic matter"
+                ]
             }
         },
         comparison: {
@@ -95,7 +161,8 @@ const foodChainWebData = {
                 "Energy Pyramid - Represents the energy flow in the ecosystem.",
                 "Biomass Pyramid - Represents the biomass flow in the ecosystem."
             ],
-            similarities: "Both pyramids have producers at the base and progressively smaller levels of consumers as you move up, reflecting the decrease in energy or biomass at each trophic level."
+            similarities: "Both pyramids reflect the decrease in available resources at each trophic level, but they measure different aspects of the ecosystem.",
+            note: "Both pyramids have producers at the base and progressively smaller levels of consumers as you move up, reflecting the decrease in energy or biomass at each trophic level."
         }
     },
     summary: {
