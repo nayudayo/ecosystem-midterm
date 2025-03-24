@@ -5,8 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 1: Digital Image Processing</title>
     <link rel="stylesheet" href="../styles.css">
+    <style>
+      .home-button {
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          z-index: 1000;
+          padding: 10px 20px;
+          background-color: var(--primary-color);
+          color: white;
+          border: none;
+          border-radius: var(--border-radius);
+          cursor: pointer;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          box-shadow: var(--box-shadow);
+          transition: var(--transition);
+      }
+
+      .home-button:hover {
+          background-color: var(--secondary-color);
+          transform: translateY(-2px);
+      }
+
+      .home-button::before {
+          font-size: 1.2em;
+      }
+  </style>
 </head>
 <body>
+   <a href="../index.html" class="home-button">Home</a>
     <header>
         <div class="container">
             <h1 class="text-center">Digital Image Processing</h1>
