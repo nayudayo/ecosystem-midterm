@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: Point Processing</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="text-center">Point Processing</h1>
+            <p class="text-center">Chapter 5: Image Processing Operations</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Introduction Section -->
+        <section class="section" id="introduction">
+            <div class="card">
+                <h2>5.1 Introduction</h2>
+                <div class="definition">
+                    <p>Image processing operations transform pixel grey values through different approaches, ranging from simple to complex transformations.</p>
+                </div>
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Transforms</h3>
+                        <p>Requires knowledge of all grey levels in the entire image. The image is processed as a single large block.</p>
+                    </div>
+                    <div class="characteristic-card">
+                        <h3>Spatial Filters</h3>
+                        <p>Uses grey levels in a small neighborhood around each pixel for transformation.</p>
+                    </div>
+                    <div class="characteristic-card">
+                        <h3>Point Operations</h3>
+                        <p>Changes pixel grey values independently, without knowledge of surrounding pixels.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Arithmetic Operations Section -->
+        <section class="section" id="arithmetic">
+            <div class="card">
+                <h2>5.2 Arithmetic Operations</h2>
+                <div class="definition">
+                    <p>Arithmetic operations involve applying mathematical functions to pixel values in the range 0-255.</p>
+                </div>
+                <div class="example">
+                    <h3>Basic Operations</h3>
+                    <pre><code>
+y = x + C    % Adding a constant
+y = Cx       % Multiplication by constant
+                    </code></pre>
+                </div>
+                <div class="method-card">
+                    <h3>Brightness Adjustment Rules</h3>
+                    <ul>
+                        <li>If result > 255, clamp to 255</li>
+                        <li>If result < 0, clamp to 0</li>
+                        <li>Otherwise, use calculated value</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brightness Effects Section -->
+        <section class="section" id="brightness">
+            <div class="card">
+                <h2>Brightness Effects</h2>
+                <div class="characteristic-card">
+                    <h3>Adding Constants</h3>
+                    <ul>
+                        <li>Adding positive values lightens the image</li>
+                        <li>Values ≥ (255 - constant) become 255</li>
+                        <li>Reduces image contrast in bright regions</li>
+                    </ul>
+                </div>
+                <div class="characteristic-card">
+                    <h3>Subtracting Constants</h3>
+                    <ul>
+                        <li>Subtracting values darkens the image</li>
+                        <li>Values ≤ constant become 0</li>
+                        <li>Reduces image contrast in dark regions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Histograms Section -->
+        <section class="section" id="histograms">
+            <div class="card">
+                <h2>5.3 Histograms</h2>
+                <div class="definition">
+                    <p>Histograms show the distribution of pixel intensities in an image, helping analyze and improve image quality.</p>
+                </div>
+                <div class="example">
+                    <h3>Working with Images</h3>
+                    <pre><code>
+>> b = imread('blocks.tif');    % Read image
+>> whos b                       % Check image properties
+>> imhist(b)                   % Display histogram
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thresholding Section -->
+        <section class="section" id="thresholding">
+            <div class="card">
+                <h2>5.4 Thresholding</h2>
+                <div class="definition">
+                    <p>Thresholding is a point processing operation that converts grayscale images to binary images based on a threshold value.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Thresholding Process</h3>
+                    <ul>
+                        <li>Choose a threshold value T</li>
+                        <li>Pixels > T become white (255)</li>
+                        <li>Pixels ≤ T become black (0)</li>
+                        <li>Results in binary image</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section class="section" id="applications">
+            <div class="card">
+                <h2>5.5 Applications of Thresholding</h2>
+                <div class="characteristic-card">
+                    <h3>Common Applications</h3>
+                    <ul>
+                        <li>Object segmentation</li>
+                        <li>Text extraction</li>
+                        <li>Document processing</li>
+                        <li>Quality control inspection</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick Navigation -->
+    <nav class="quick-nav">
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#arithmetic">Arithmetic Operations</a></li>
+            <li><a href="#brightness">Brightness Effects</a></li>
+            <li><a href="#histograms">Histograms</a></li>
+            <li><a href="#thresholding">Thresholding</a></li>
+            <li><a href="#applications">Applications</a></li>
+        </ul>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button class="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+</body>
+</html> 

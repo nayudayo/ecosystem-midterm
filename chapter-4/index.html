@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: Image Display</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="text-center">Image Display</h1>
+            <p class="text-center">Chapter 4: Visualization and Quality in Digital Image Processing</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Introduction Section -->
+        <section class="section" id="introduction">
+            <div class="card">
+                <h2>Introduction to Image Display</h2>
+                <div class="definition">
+                    <p>Image Display in digital image processing refers to visualizing image data for human interpretation. It allows researchers and developers to inspect image properties and is crucial for applications like medical imaging, satellite analysis, and AI training.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Quality Section -->
+        <section class="section" id="image-quality">
+            <div class="card">
+                <h2>Image Quality</h2>
+                <div class="definition">
+                    <p>Image quality is influenced by various attributes and is inherently subjective in nature.</p>
+                </div>
+                <div class="characteristic-card">
+                    <h3>Key Considerations</h3>
+                    <ul>
+                        <li>Quality is highly subjective - different viewers may have different opinions</li>
+                        <li>Human vision generally prefers sharp and detailed images</li>
+                        <li>Quality depends on spatial resolution and quantization</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Types Section -->
+        <section class="section" id="data-types">
+            <div class="card">
+                <h2>Image Data Types</h2>
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>uint8</h3>
+                        <p>Integer values from 0 to 255</p>
+                        <ul>
+                            <li>Commonly used for 8-bit images</li>
+                            <li>0 = black, 255 = white</li>
+                            <li>Standard format for many image files</li>
+                        </ul>
+                    </div>
+                    <div class="characteristic-card">
+                        <h3>double</h3>
+                        <p>Floating-point values typically scaled to [0,1]</p>
+                        <ul>
+                            <li>Used for precise calculations</li>
+                            <li>0 = black, 1 = white</li>
+                            <li>Common output type for processing functions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Working with Data Types Section -->
+        <section class="section" id="type-conversion">
+            <div class="card">
+                <h2>Working with Different Data Types</h2>
+                <div class="method-card">
+                    <h3>Handling Options</h3>
+                    <ol>
+                        <li>Convert to uint8 before display</li>
+                        <li>Display matrix directly with appropriate scaling</li>
+                    </ol>
+                </div>
+                <div class="example">
+                    <h3>Type Conversion Example</h3>
+                    <pre><code>
+>> c = imread('caribou.tif');     % Read image as uint8
+>> cd = double(c);                % Convert to double
+>> imshow(c)                      % Display original
+>> figure, imshow(cd);            % Display converted (appears black)
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Scaling Section -->
+        <section class="section" id="scaling">
+            <div class="card">
+                <h2>Image Scaling</h2>
+                <div class="definition">
+                    <p>When working with double-precision images, proper scaling is essential for correct display.</p>
+                </div>
+                <div class="example">
+                    <h3>Scaling Example</h3>
+                    <pre><code>
+>> cd = double(c);                % Convert to double
+>> imshow(cd/255)                 % Scale to [0,1] range
+                    </code></pre>
+                    <p class="important-note">Note: Division by 255 scales 8-bit values (0-255) to the range [0,1]</p>
+                </div>
+                <div class="method-card">
+                    <h3>Important Considerations</h3>
+                    <ul>
+                        <li>Always check the data type of your image</li>
+                        <li>Understand the expected value range for display</li>
+                        <li>Use appropriate scaling for your data type</li>
+                        <li>Consider the impact on image quality</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick Navigation -->
+    <nav class="quick-nav">
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#image-quality">Image Quality</a></li>
+            <li><a href="#data-types">Data Types</a></li>
+            <li><a href="#type-conversion">Type Conversion</a></li>
+            <li><a href="#scaling">Image Scaling</a></li>
+        </ul>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button class="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+</body>
+</html> 

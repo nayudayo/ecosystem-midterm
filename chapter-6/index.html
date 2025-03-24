@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 6: Spatial Filtering</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="text-center">Spatial Filtering</h1>
+            <p class="text-center">Chapter 6: Advanced Image Processing Techniques</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Introduction Section -->
+        <section class="section" id="introduction">
+            <div class="card">
+                <h2>6.1 Introduction to Linear Filters</h2>
+                <div class="definition">
+                    <p>Linear filters process images by applying mathematical operations to a local neighborhood of pixels using a mask (or kernel).</p>
+                </div>
+                <div class="example">
+                    <h3>Example with 5x5 Matrix</h3>
+                    <pre><code>
+>> x = uint8(10 * magic(5))    % Create test matrix
+>> mean2(x(1:3,1:3))           % Calculate average of first 3x3 region
+>> mean2(x(1:3,2:4))           % Calculate average of shifted region
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notation Section -->
+        <section class="section" id="notation">
+            <div class="card">
+                <h2>6.2 Filter Notation</h2>
+                <div class="definition">
+                    <p>Linear filters are described using coefficient matrices that specify how pixel values within the mask are combined.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Averaging Filter Example</h3>
+                    <pre><code>
+[ 1/9  1/9  1/9 ]
+[ 1/9  1/9  1/9 ]
+[ 1/9  1/9  1/9 ]
+                    </code></pre>
+                    <p>Each coefficient represents the weight applied to the corresponding pixel in the mask.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Edge Handling Section -->
+        <section class="section" id="edge-handling">
+            <div class="card">
+                <h2>6.3 Handling Image Edges</h2>
+                <div class="definition">
+                    <p>Special consideration is needed when applying filters near image edges where the mask extends beyond the image boundaries.</p>
+                </div>
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Common Solutions</h3>
+                        <ul>
+                            <li>Padding with zeros</li>
+                            <li>Extending edge values</li>
+                            <li>Mirroring the image</li>
+                            <li>Circular wrapping</li>
+                        </ul>
+                    </div>
+                    <div class="characteristic-card">
+                        <h3>Considerations</h3>
+                        <ul>
+                            <li>Impact on filter output</li>
+                            <li>Edge preservation</li>
+                            <li>Computational efficiency</li>
+                            <li>Application requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Section -->
+        <section class="section" id="implementation">
+            <div class="card">
+                <h2>6.4 Filter Implementation</h2>
+                <div class="example">
+                    <h3>MATLAB Implementation</h3>
+                    <pre><code>
+% Define a 3x3 averaging filter
+h = ones(3,3) / 9;
+
+% Apply filter to image
+filtered_img = imfilter(original_img, h);
+
+% Apply filter with edge handling
+filtered_img = imfilter(original_img, h, 'replicate');
+                    </code></pre>
+                </div>
+                <div class="method-card">
+                    <h3>Key Functions</h3>
+                    <ul>
+                        <li><strong>imfilter:</strong> Apply linear filter to image</li>
+                        <li><strong>conv2:</strong> 2D convolution</li>
+                        <li><strong>fspecial:</strong> Create predefined filters</li>
+                        <li><strong>medfilt2:</strong> 2D median filtering</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section class="section" id="applications">
+            <div class="card">
+                <h2>6.5 Applications</h2>
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Smoothing Filters</h3>
+                        <ul>
+                            <li>Noise reduction</li>
+                            <li>Image blurring</li>
+                            <li>Detail suppression</li>
+                        </ul>
+                    </div>
+                    <div class="characteristic-card">
+                        <h3>Sharpening Filters</h3>
+                        <ul>
+                            <li>Edge enhancement</li>
+                            <li>Detail emphasis</li>
+                            <li>Feature detection</li>
+                        </ul>
+                    </div>
+                    <div class="characteristic-card">
+                        <h3>Edge Detection</h3>
+                        <ul>
+                            <li>Gradient operators</li>
+                            <li>Laplacian filters</li>
+                            <li>Directional filters</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick Navigation -->
+    <nav class="quick-nav">
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#notation">Filter Notation</a></li>
+            <li><a href="#edge-handling">Edge Handling</a></li>
+            <li><a href="#implementation">Implementation</a></li>
+            <li><a href="#applications">Applications</a></li>
+        </ul>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button class="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+</body>
+</html> 

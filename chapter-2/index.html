@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: Basic Use of MATLAB</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="text-center">Basic Use of MATLAB</h1>
+            <p class="text-center">Chapter 2: MATLAB Fundamentals</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Introduction Section -->
+        <section class="section" id="introduction">
+            <div class="card">
+                <h2>2.1 Introduction</h2>
+                <div class="definition">
+                    <p>MATLAB is a data analysis and visualization tool which has been designed with powerful support for matrices and matrix operations. It has excellent graphics capabilities, and its own powerful programming language.</p>
+                </div>
+                <div class="characteristic-card">
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li>MATLAB uses toolboxes - sets of programs designed to support particular tasks</li>
+                        <li>Functions are keywords that accept parameters and produce output</li>
+                        <li>Commands are specific uses of functions</li>
+                        <li>All data in MATLAB is treated as matrices</li>
+                    </ul>
+                </div>
+                <div class="method-card">
+                    <h3>Data Types in MATLAB</h3>
+                    <ul>
+                        <li><strong>Images:</strong> Matrices of grey values or RGB values</li>
+                        <li><strong>Single values:</strong> Treated as 1x1 matrices</li>
+                        <li><strong>Strings:</strong> 1xn matrices of characters</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Basic Usage Section -->
+        <section class="section" id="basic-usage">
+            <div class="card">
+                <h2>2.2 Basic Use of MATLAB</h2>
+                <div class="definition">
+                    <p>MATLAB is command line driven; all commands are entered after the prompt symbol (>>). It supports standard arithmetic operations and provides various output formats.</p>
+                </div>
+                <div class="example">
+                    <h3>Basic Operations</h3>
+                    <pre><code>
+>> 2+2    % Addition
+>> 3*4    % Multiplication
+>> 7-3    % Subtraction
+>> 11/7   % Division
+>> 2^5    % Exponentiation
+>> format long  % Change output format
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variables Section -->
+        <section class="section" id="variables">
+            <div class="card">
+                <h2>2.3 Variables</h2>
+                <div class="definition">
+                    <p>Variables in MATLAB store values and can be displayed in different formats while maintaining their full precision internally.</p>
+                </div>
+                <div class="example">
+                    <h3>Variable Examples</h3>
+                    <pre><code>
+a = 5^(7/2)           % Assigns value to variable a
+b = sin(pi/9)-cos(pi/9)  % Assigns value to variable b
+format long; a        % Displays full precision
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workspace Section -->
+        <section class="section" id="workspace">
+            <div class="card">
+                <h2>2.3.1 The Workspace</h2>
+                <div class="method-card">
+                    <h3>Workspace Features</h3>
+                    <ul>
+                        <li>Lists all currently defined variables</li>
+                        <li>Shows numeric data types</li>
+                        <li>Displays sizes in bytes</li>
+                        <li>Accessible via View menu or 'whos' command</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h3>Workspace Command</h3>
+                    <pre><code>
+>> whos  % Displays information about variables in workspace
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Matrices Section -->
+        <section class="section" id="matrices">
+            <div class="card">
+                <h2>2.4 Matrices</h2>
+                <div class="definition">
+                    <p>Matrices are the fundamental data structure in MATLAB. Understanding how to work with matrices is essential for effective MATLAB programming.</p>
+                </div>
+                <div class="characteristic-card">
+                    <h3>Matrix Operations</h3>
+                    <ul>
+                        <li>Element access and modification</li>
+                        <li>Matrix arithmetic</li>
+                        <li>Matrix functions</li>
+                        <li>Matrix manipulation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick Navigation -->
+    <nav class="quick-nav">
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#basic-usage">Basic Usage</a></li>
+            <li><a href="#variables">Variables</a></li>
+            <li><a href="#workspace">Workspace</a></li>
+            <li><a href="#matrices">Matrices</a></li>
+        </ul>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button class="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+</body>
+</html> 

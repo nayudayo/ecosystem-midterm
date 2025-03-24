@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: Digital Image Processing</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="text-center">Digital Image Processing</h1>
+            <p class="text-center">Chapter 1: Introduction and Fundamentals</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Introduction Section -->
+        <section class="section" id="introduction">
+            <div class="card">
+                <h2>Introduction to Digital Image Processing</h2>
+                <div class="definition">
+                    <p>Digital Image Processing is the manipulation of digital images through computer algorithms. It focuses on enhancing image quality, extracting useful information, and facilitating image analysis.</p>
+                </div>
+                <div class="characteristic-card">
+                    <h3>Key Applications</h3>
+                    <ul>
+                        <li>Medical imaging</li>
+                        <li>Remote sensing</li>
+                        <li>Digital photography</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="section" id="overview">
+            <div class="card">
+                <h2>Overview</h2>
+                <div class="method-card">
+                    <h3>Key Topics</h3>
+                    <ul>
+                        <li>Images and Pictures</li>
+                        <li>Digital Images</li>
+                        <li>Applications</li>
+                        <li>Aspects of Image Processing</li>
+                        <li>Image Processing Tasks</li>
+                        <li>Types of Digital Images</li>
+                        <li>Image File Size</li>
+                        <li>Image Acquisition</li>
+                        <li>Image Perception</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Processing Types -->
+        <section class="section" id="processing-types">
+            <div class="card">
+                <h2>Types of Image Processing</h2>
+                
+                <div class="example">
+                    <h3>1. Enhancing Image Sharpness</h3>
+                    <p>Image sharpening enhances the edges of an image to make it appear clearer and more defined. This is particularly important in printing where images need to appear at their best on the printed page.</p>
+                </div>
+
+                <div class="example">
+                    <h3>2. Removing Noise</h3>
+                    <p>Noise refers to random errors in the image that can occur during data transmission. Different types of noise require different removal methods.</p>
+                </div>
+
+                <div class="example">
+                    <h3>3. Removing Motion Blur</h3>
+                    <p>Motion blur occurs when the shutter speed is too slow for the moving object. Deblurring techniques can help recover details like numberplates and other fine features.</p>
+                </div>
+
+                <div class="example">
+                    <h3>4. Edge Detection</h3>
+                    <p>Edge detection is crucial for measuring objects in images. It helps identify boundaries and calculate areas within them.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Types -->
+        <section class="section" id="image-types">
+            <div class="card">
+                <h2>Types of Digital Images</h2>
+
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Binary Images</h3>
+                        <p>Each pixel is either black or white, requiring only one bit per pixel. Ideal for:</p>
+                        <ul>
+                            <li>Text documents</li>
+                            <li>Fingerprints</li>
+                            <li>Architectural plans</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Greyscale Images</h3>
+                        <p>Each pixel represents a shade of grey from 0 (black) to 255 (white). Common in:</p>
+                        <ul>
+                            <li>Medical X-rays</li>
+                            <li>Printed works</li>
+                            <li>Natural object recognition</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>RGB Color Images</h3>
+                        <p>Each pixel has red, green, and blue components (24-bit color), allowing for 16,777,216 possible colors.</p>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Indexed Color Images</h3>
+                        <p>Uses a color map or palette, with each pixel storing an index to the color rather than the color itself.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Acquisition -->
+        <section class="section" id="acquisition">
+            <div class="card">
+                <h2>Image Acquisition</h2>
+                <div class="method-card">
+                    <h3>CCD Camera</h3>
+                    <p>Uses an array of photosites that generate voltage proportional to light intensity. Capable of capturing images in up to one ten-thousandth of a second.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Flatbed Scanner</h3>
+                    <p>Uses a single row of photosites moved across the image, capturing it row-by-row. Slower but more controlled process.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Perception -->
+        <section class="section" id="perception">
+            <div class="card">
+                <h2>Image Perception</h2>
+                <div class="important-note">
+                    <p>Image perception involves two basic steps:</p>
+                    <ol>
+                        <li>Capturing the image with the eye</li>
+                        <li>Recognizing and interpreting the image with the visual cortex in the brain</li>
+                    </ol>
+                </div>
+                <div class="characteristic-card">
+                    <h3>Key Perception Phenomena</h3>
+                    <ul>
+                        <li>Background affects perceived intensity</li>
+                        <li>Non-existent intensities can be perceived in continuous gradients</li>
+                        <li>Visual overshooting and undershooting at boundaries</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick Navigation -->
+    <nav class="quick-nav">
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#processing-types">Processing Types</a></li>
+            <li><a href="#image-types">Image Types</a></li>
+            <li><a href="#acquisition">Acquisition</a></li>
+            <li><a href="#perception">Perception</a></li>
+        </ul>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button class="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+</body>
+</html>

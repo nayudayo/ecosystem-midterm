@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Images & MATLAB</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="text-center">Images & MATLAB</h1>
+            <p class="text-center">Chapter 3: Working with Digital Images in MATLAB</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Introduction Section -->
+        <section class="section" id="introduction">
+            <div class="card">
+                <h2>What is MATLAB?</h2>
+                <div class="definition">
+                    <p>MATLAB is a powerful computing environment used for numerical computing, data visualization, and algorithm development. It provides extensive support for matrix operations and image processing through its specialized toolboxes.</p>
+                </div>
+                <div class="characteristic-card">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Built-in functions for matrix operations</li>
+                        <li>Comprehensive Image Processing Toolbox</li>
+                        <li>Efficient handling of complex image processing tasks</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why MATLAB Section -->
+        <section class="section" id="why-matlab">
+            <div class="card">
+                <h2>Why Use MATLAB for Image Processing?</h2>
+                <div class="method-card">
+                    <h3>Advantages</h3>
+                    <ul>
+                        <li>Images can be manipulated as matrices</li>
+                        <li>Large collection of built-in functions</li>
+                        <li>Widely used in research and engineering</li>
+                        <li>Excellent for image analysis and enhancement</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Digital Images Section -->
+        <section class="section" id="digital-images">
+            <div class="card">
+                <h2>Digital Images</h2>
+                <div class="definition">
+                    <p>A digital image consists of a grid of pixels, where each pixel represents a small portion of the image. Each pixel has a numerical value that defines its intensity or color.</p>
+                </div>
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Greyscale Images</h3>
+                        <p>Each pixel has a range of intensities from black to white</p>
+                    </div>
+                    <div class="characteristic-card">
+                        <h3>RGB Images</h3>
+                        <p>Each pixel consists of three color components: Red, Green, and Blue</p>
+                    </div>
+                    <div class="characteristic-card">
+                        <h3>Indexed Colour Images</h3>
+                        <p>Uses a colormap where each pixel value points to a specific color</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Working with Images Section -->
+        <section class="section" id="working-with-images">
+            <div class="card">
+                <h2>Loading and Displaying Images</h2>
+                <div class="example">
+                    <h3>Reading Images</h3>
+                    <pre><code>
+>> w = imread('wombats.tif');  % Load image into variable w
+                    </code></pre>
+                    <p class="important-note">Note: The semicolon prevents output display of the large matrix</p>
+                </div>
+                <div class="example">
+                    <h3>Displaying Images</h3>
+                    <pre><code>
+>> figure              % Create new window
+>> imshow(w)          % Display the image
+>> pixval on          % Enable pixel value display
+                    </code></pre>
+                </div>
+                <div class="method-card">
+                    <h3>Important Commands</h3>
+                    <ul>
+                        <li><strong>imread:</strong> Reads image file into matrix</li>
+                        <li><strong>imshow:</strong> Displays image from matrix</li>
+                        <li><strong>figure:</strong> Creates new display window</li>
+                        <li><strong>pixval:</strong> Shows pixel values on hover</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Processing Section -->
+        <section class="section" id="image-processing">
+            <div class="card">
+                <h2>Image Processing Basics</h2>
+                <div class="definition">
+                    <p>MATLAB provides various functions for image processing tasks such as filtering, edge detection, and segmentation.</p>
+                </div>
+                <div class="characteristic-card">
+                    <h3>Common Operations</h3>
+                    <ul>
+                        <li>Image enhancement and restoration</li>
+                        <li>Feature detection and extraction</li>
+                        <li>Image transformation and analysis</li>
+                        <li>Color space conversion</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick Navigation -->
+    <nav class="quick-nav">
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#why-matlab">Why MATLAB</a></li>
+            <li><a href="#digital-images">Digital Images</a></li>
+            <li><a href="#working-with-images">Working with Images</a></li>
+            <li><a href="#image-processing">Image Processing</a></li>
+        </ul>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button class="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+</body>
+</html> 
