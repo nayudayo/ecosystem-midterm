@@ -52,6 +52,15 @@
                 <div class="definition">
                     <p>Image Display in digital image processing refers to visualizing image data for human interpretation. It allows researchers and developers to inspect image properties and is crucial for applications like medical imaging, satellite analysis, and AI training.</p>
                 </div>
+                <div class="characteristic-card">
+                    <h3>Key Applications</h3>
+                    <ul>
+                        <li>Medical Imaging Analysis</li>
+                        <li>Satellite Data Processing</li>
+                        <li>AI Model Training and Validation</li>
+                        <li>Scientific Research Visualization</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -60,7 +69,7 @@
             <div class="card">
                 <h2>Image Quality</h2>
                 <div class="definition">
-                    <p>Image quality is influenced by various attributes and is inherently subjective in nature.</p>
+                    <p>Image quality is influenced by various attributes and is inherently subjective in nature. The perception of quality depends on two main properties: spatial resolution and quantization.</p>
                 </div>
                 <div class="characteristic-card">
                     <h3>Key Considerations</h3>
@@ -70,6 +79,15 @@
                         <li>Quality depends on spatial resolution and quantization</li>
                     </ul>
                 </div>
+                <div class="method-card">
+                    <h3>Quality Factors</h3>
+                    <ul>
+                        <li><strong>Spatial Resolution:</strong> Determines the level of detail in the image</li>
+                        <li><strong>Quantization:</strong> Affects the precision of pixel values</li>
+                        <li><strong>Contrast:</strong> Influences the visibility of details</li>
+                        <li><strong>Sharpness:</strong> Impacts the clarity of edges and features</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -77,6 +95,9 @@
         <section class="section" id="data-types">
             <div class="card">
                 <h2>Image Data Types</h2>
+                <div class="definition">
+                    <p>Understanding image data types is crucial as they affect how MATLAB processes and displays images. Different MATLAB image processing commands may produce output matrices of varying types.</p>
+                </div>
                 <div class="distribution-grid">
                     <div class="characteristic-card">
                         <h3>uint8</h3>
@@ -85,8 +106,17 @@
                             <li>Commonly used for 8-bit images</li>
                             <li>0 = black, 255 = white</li>
                             <li>Standard format for many image files</li>
+                            <li>Most efficient for storage and display</li>
                         </ul>
+                        <div class="example">
+                            <h4>Example Usage</h4>
+                            <pre><code>
+c = imread('image.tif');  % Reads as uint8
+imshow(c);               % Displays correctly
+                            </code></pre>
+                        </div>
                     </div>
+
                     <div class="characteristic-card">
                         <h3>double</h3>
                         <p>Floating-point values typically scaled to [0,1]</p>
@@ -94,8 +124,26 @@
                             <li>Used for precise calculations</li>
                             <li>0 = black, 1 = white</li>
                             <li>Common output type for processing functions</li>
+                            <li>Requires proper scaling for display</li>
                         </ul>
+                        <div class="example">
+                            <h4>Example Usage</h4>
+                            <pre><code>
+cd = double(c);         % Convert to double
+imshow(cd/255);        % Scale for display
+                            </code></pre>
+                        </div>
                     </div>
+                </div>
+
+                <div class="important-note">
+                    <h3>Key Differences</h3>
+                    <ul>
+                        <li>uint8 is optimized for storage and direct display</li>
+                        <li>double provides more precision but requires scaling</li>
+                        <li>Many MATLAB functions output double by default</li>
+                        <li>Conversion between types may be necessary for proper display</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -104,11 +152,24 @@
         <section class="section" id="type-conversion">
             <div class="card">
                 <h2>Working with Different Data Types</h2>
+                <div class="definition">
+                    <p>When working with images in MATLAB, you often need to handle different data types. Understanding how to convert between types and display them correctly is essential.</p>
+                </div>
                 <div class="method-card">
                     <h3>Handling Options</h3>
                     <ol>
-                        <li>Convert to uint8 before display</li>
-                        <li>Display matrix directly with appropriate scaling</li>
+                        <li>Convert to uint8 before display
+                            <ul>
+                                <li>Best for final output</li>
+                                <li>Preserves standard image format</li>
+                            </ul>
+                        </li>
+                        <li>Display matrix directly with appropriate scaling
+                            <ul>
+                                <li>Useful during processing</li>
+                                <li>Requires understanding of value ranges</li>
+                            </ul>
+                        </li>
                     </ol>
                 </div>
                 <div class="example">
@@ -119,6 +180,7 @@
 >> imshow(c)                      % Display original
 >> figure, imshow(cd);            % Display converted (appears black)
                     </code></pre>
+                    <p class="note">Note: The second image appears black because double values need scaling for proper display</p>
                 </div>
             </div>
         </section>
@@ -128,7 +190,7 @@
             <div class="card">
                 <h2>Image Scaling</h2>
                 <div class="definition">
-                    <p>When working with double-precision images, proper scaling is essential for correct display.</p>
+                    <p>When working with double-precision images, proper scaling is essential for correct display. The scaling process converts the numerical range of the image data to match the expected display range.</p>
                 </div>
                 <div class="example">
                     <h3>Scaling Example</h3>
@@ -147,6 +209,158 @@
                         <li>Consider the impact on image quality</li>
                     </ul>
                 </div>
+                <div class="characteristic-card">
+                    <h3>Common Scaling Operations</h3>
+                    <ul>
+                        <li><strong>uint8 to double:</strong> Divide by 255</li>
+                        <li><strong>double to uint8:</strong> Multiply by 255</li>
+                        <li><strong>Normalization:</strong> Scale to specific range</li>
+                        <li><strong>Custom scaling:</strong> Based on data requirements</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- imshow Function Details Section -->
+        <section class="section" id="imshow-details">
+            <div class="card">
+                <h2>imshow Function Details</h2>
+                <div class="definition">
+                    <p>The imshow function is versatile and supports various input formats and display options. It can display grayscale, RGB, binary, and indexed images with different parameters for customization.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Common Syntax Forms</h3>
+                    <ul>
+                        <li><code>imshow(I)</code> - Displays grayscale image I</li>
+                        <li><code>imshow(I, [low high])</code> - Displays with specified range</li>
+                        <li><code>imshow(I, [])</code> - Auto-scales display range</li>
+                        <li><code>imshow(X, map)</code> - Displays indexed image with colormap</li>
+                        <li><code>imshow(filename)</code> - Displays image from file</li>
+                        <li><code>imshow(_, Name=Value)</code> - Uses name-value pairs</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h3>Example Usage</h3>
+                    <pre><code>
+% Read and display an image
+img = imread('testdeer.jpg');
+imshow(img, 'InitialMagnification', 'fit', 'Border', 'tight');
+
+% Display with custom range
+imshow(img, [0 255]);
+
+% Auto-scale display
+imshow(img, []);
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scaling Factors Section -->
+        <section class="section" id="scaling-factors">
+            <div class="card">
+                <h2>Effects of Different Scaling Factors</h2>
+                <div class="definition">
+                    <p>The choice of scaling factor significantly affects the visual appearance of displayed images. Understanding these effects is crucial for proper image visualization.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Scaling Effects</h3>
+                    <ul>
+                        <li><strong>Larger Divisor (e.g., /512):</strong> Results in lower pixel values (0 to 0.5 range). Image appears darker as even the brightest pixels become mid-grey.</li>
+                        <li><strong>Smaller Divisor (e.g., /128):</strong> Many pixel values exceed 1 and are clipped to white, resulting in an over-exposed appearance.</li>
+                        <li><strong>Optimal Divisor (255 for 8-bit):</strong> Provides proper scaling to the [0,1] range for correct display.</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h3>Scaling Examples</h3>
+                    <pre><code>
+% Different scaling factors
+imshow(cd/512)  % Darker image
+imshow(cd/128)  % Over-exposed image
+imshow(cd/255)  % Proper scaling
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Indexed Images Section -->
+        <section class="section" id="indexed-images">
+            <div class="card">
+                <h2>Working with Indexed Images</h2>
+                <div class="definition">
+                    <p>Indexed images use a colormap to define the colors in the image, allowing for effective storage and display of images with a limited number of colors.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li>Images are stored as a matrix of indices into a colormap</li>
+                        <li>Colormap is an m-by-3 matrix defining RGB triplets</li>
+                        <li>Useful for images with limited color palettes</li>
+                        <li>Can reduce memory usage and processing time</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h3>Example Usage</h3>
+                    <pre><code>
+% Convert RGB to indexed image
+[X, map] = rgb2ind(RGB, 256);
+imshow(X, map);
+
+% Display with different colormap
+imshow(X, jet(256));
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Resizing Section -->
+        <section class="section" id="image-resizing">
+            <div class="card">
+                <h2>Image Resizing</h2>
+                <div class="definition">
+                    <p>The imresize function allows you to scale images up or down by specifying either a scaling factor or exact dimensions. By default, it uses bicubic interpolation for optimal quality.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Resizing Options</h3>
+                    <ul>
+                        <li><strong>Scale Factor:</strong> Use a number between 0 and 1 to reduce size, greater than 1 to enlarge</li>
+                        <li><strong>Exact Size:</strong> Specify the desired number of rows and columns</li>
+                        <li><strong>Interpolation Methods:</strong> 'nearest', 'bilinear', 'bicubic' (default)</li>
+                        <li><strong>Antialiasing:</strong> Can be enabled or disabled for downsampling</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h3>Example Usage</h3>
+                    <pre><code>
+% Read original image
+A = imread('testdeer.jpg');
+
+% Resize to 30% of original size
+B = imresize(A, 0.3);
+
+% Resize with specific dimensions
+C = imresize(A, [256 256]);
+
+% Resize with different interpolation
+D = imresize(A, 0.5, 'Method', 'nearest');
+
+% Display results
+figure;
+subplot(2,2,1); imshow(A); title('Original');
+subplot(2,2,2); imshow(B); title('30% Scale');
+subplot(2,2,3); imshow(C); title('256x256');
+subplot(2,2,4); imshow(D); title('Nearest Neighbor');
+                    </code></pre>
+                </div>
+                <div class="important-note">
+                    <h3>Key Considerations</h3>
+                    <ul>
+                        <li>Downscaling may lose image details</li>
+                        <li>Upscaling cannot create new information</li>
+                        <li>Choice of interpolation method affects quality</li>
+                        <li>Consider memory usage for large images</li>
+                    </ul>
+                </div>
             </div>
         </section>
     </main>
@@ -159,6 +373,10 @@
             <li><a href="#data-types">Data Types</a></li>
             <li><a href="#type-conversion">Type Conversion</a></li>
             <li><a href="#scaling">Image Scaling</a></li>
+            <li><a href="#imshow-details">imshow Details</a></li>
+            <li><a href="#scaling-factors">Scaling Factors</a></li>
+            <li><a href="#indexed-images">Indexed Images</a></li>
+            <li><a href="#image-resizing">Image Resizing</a></li>
         </ul>
     </nav>
 

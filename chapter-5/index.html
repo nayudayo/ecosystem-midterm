@@ -40,7 +40,7 @@
     <header>
         <div class="container">
             <h1 class="text-center">Point Processing</h1>
-            <p class="text-center">Chapter 5: Image Processing Operations</p>
+            <p class="text-center">Chapter 5: Image Enhancement through Point Operations</p>
         </div>
     </header>
 
@@ -48,71 +48,105 @@
         <!-- Introduction Section -->
         <section class="section" id="introduction">
             <div class="card">
-                <h2>5.1 Introduction</h2>
+                <h2>Introduction to Point Processing</h2>
                 <div class="definition">
-                    <p>Image processing operations transform pixel grey values through different approaches, ranging from simple to complex transformations.</p>
+                    <p>Point processing involves manipulating individual pixel values in an image to enhance or modify its appearance. These operations are performed on a pixel-by-pixel basis, where the output value depends only on the input value of the corresponding pixel.</p>
                 </div>
-                <div class="distribution-grid">
-                    <div class="characteristic-card">
-                        <h3>Transforms</h3>
-                        <p>Requires knowledge of all grey levels in the entire image. The image is processed as a single large block.</p>
-                    </div>
-                    <div class="characteristic-card">
-                        <h3>Spatial Filters</h3>
-                        <p>Uses grey levels in a small neighborhood around each pixel for transformation.</p>
-                    </div>
-                    <div class="characteristic-card">
-                        <h3>Point Operations</h3>
-                        <p>Changes pixel grey values independently, without knowledge of surrounding pixels.</p>
-                    </div>
+                <div class="characteristic-card">
+                    <h3>Key Applications</h3>
+                    <ul>
+                        <li>Brightness Adjustment</li>
+                        <li>Contrast Enhancement</li>
+                        <li>Image Thresholding</li>
+                        <li>Histogram Manipulation</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- Arithmetic Operations Section -->
-        <section class="section" id="arithmetic">
+        <section class="section" id="arithmetic-operations">
             <div class="card">
-                <h2>5.2 Arithmetic Operations</h2>
+                <h2>Arithmetic Operations</h2>
                 <div class="definition">
-                    <p>Arithmetic operations involve applying mathematical functions to pixel values in the range 0-255.</p>
-                </div>
-                <div class="example">
-                    <h3>Basic Operations</h3>
-                    <pre><code>
-y = x + C    % Adding a constant
-y = Cx       % Multiplication by constant
-                    </code></pre>
+                    <p>Basic mathematical operations can be applied to image pixel values to achieve various effects. These operations include addition, subtraction, multiplication, and division.</p>
                 </div>
                 <div class="method-card">
-                    <h3>Brightness Adjustment Rules</h3>
+                    <h3>Common Operations</h3>
                     <ul>
-                        <li>If result > 255, clamp to 255</li>
-                        <li>If result < 0, clamp to 0</li>
-                        <li>Otherwise, use calculated value</li>
+                        <li><strong>Addition/Subtraction:</strong> Adjusts brightness
+                            <pre><code>
+% Increase brightness
+y = x + 128;  % Adds 128 to each pixel
+
+% Decrease brightness
+y = x - 128;  % Subtracts 128 from each pixel</code></pre>
+                        </li>
+                        <li><strong>Multiplication/Division:</strong> Changes contrast
+                            <pre><code>
+% Increase contrast
+y = 2 * x;    % Doubles pixel values
+
+% Decrease contrast
+y = x / 2;    % Halves pixel values</code></pre>
+                        </li>
                     </ul>
+                </div>
+                <div class="important-note">
+                    <h3>Brightness Clamping</h3>
+                    <p>Results must be clamped to valid pixel value ranges (typically 0-255 for 8-bit images) to prevent overflow or underflow.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Brightness Effects Section -->
-        <section class="section" id="brightness">
+        <!-- Information Loss Section -->
+        <section class="section" id="information-loss">
             <div class="card">
-                <h2>Brightness Effects</h2>
-                <div class="characteristic-card">
-                    <h3>Adding Constants</h3>
+                <h2>Information Loss in Processing</h2>
+                <div class="definition">
+                    <p>When performing arithmetic operations on images, information can be lost due to pixel value clamping or truncation. This is particularly noticeable in subtraction operations and extreme brightness adjustments.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Common Cases of Information Loss</h3>
                     <ul>
-                        <li>Adding positive values lightens the image</li>
-                        <li>Values ≥ (255 - constant) become 255</li>
-                        <li>Reduces image contrast in bright regions</li>
+                        <li><strong>Subtraction:</strong> Pixels with values ≤ constant become zero</li>
+                        <li><strong>Edge Loss:</strong> Light edges may disappear in bright regions</li>
+                        <li><strong>Detail Loss:</strong> Fine details can be lost in dark or bright areas</li>
                     </ul>
                 </div>
-                <div class="characteristic-card">
-                    <h3>Subtracting Constants</h3>
+                <div class="example">
+                    <h3>Example of Information Loss</h3>
+                    <pre><code>
+% Demonstration of information loss
+b = imread('blocks.tif');
+b2 = b - 128;  % Many pixels become 0
+b4 = 2 * b;    % Many pixels become 255</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Complement Section -->
+        <section class="section" id="image-complement">
+            <div class="card">
+                <h2>Image Complement</h2>
+                <div class="definition">
+                    <p>The complement of a grayscale image is its photographic negative. Different methods are used depending on the image type.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Complement Methods</h3>
                     <ul>
-                        <li>Subtracting values darkens the image</li>
-                        <li>Values ≤ constant become 0</li>
-                        <li>Reduces image contrast in dark regions</li>
+                        <li><strong>Double Type:</strong> Use <code>1 - m</code> for values in [0,1]</li>
+                        <li><strong>Binary Images:</strong> Use <code>~m</code> for logical negation</li>
+                        <li><strong>uint8 Images:</strong> Use <code>imcomplement</code> function</li>
                     </ul>
+                </div>
+                <div class="example">
+                    <h3>Example Usage</h3>
+                    <pre><code>
+% Complement uint8 image
+b = imread('image.tif');
+bc = imcomplement(b);
+imshow(bc);</code></pre>
                 </div>
             </div>
         </section>
@@ -120,17 +154,125 @@ y = Cx       % Multiplication by constant
         <!-- Histograms Section -->
         <section class="section" id="histograms">
             <div class="card">
-                <h2>5.3 Histograms</h2>
+                <h2>Histograms</h2>
                 <div class="definition">
-                    <p>Histograms show the distribution of pixel intensities in an image, helping analyze and improve image quality.</p>
+                    <p>A histogram represents the distribution of pixel intensities in an image. It shows how many pixels in an image have each possible intensity value.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Histogram Analysis</h3>
+                    <ul>
+                        <li><strong>Dark Images:</strong> Histogram clustered at lower values</li>
+                        <li><strong>Bright Images:</strong> Histogram clustered at higher values</li>
+                        <li><strong>Well-Contrasted Images:</strong> Histogram spread across the range</li>
+                    </ul>
                 </div>
                 <div class="example">
-                    <h3>Working with Images</h3>
+                    <h3>Viewing Histograms in MATLAB</h3>
                     <pre><code>
->> b = imread('blocks.tif');    % Read image
->> whos b                       % Check image properties
->> imhist(b)                   % Display histogram
-                    </code></pre>
+% Read and display image with histogram
+p = imread('pout.tif');
+imshow(p);
+figure;
+imhist(p);
+axis tight;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Histogram Stretching Section -->
+        <section class="section" id="histogram-stretching">
+            <div class="card">
+                <h2>Histogram Stretching</h2>
+                <div class="definition">
+                    <p>Also known as contrast stretching, this technique enhances image contrast by stretching the range of intensity values to span a desired range of values.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Implementation Steps</h3>
+                    <ol>
+                        <li>Find current minimum and maximum intensities</li>
+                        <li>Calculate scaling factors</li>
+                        <li>Apply linear transformation</li>
+                        <li>Adjust output range as needed</li>
+                    </ol>
+                </div>
+                <div class="example">
+                    <h3>Using imadjust</h3>
+                    <pre><code>
+% Enhance image contrast
+t = imread('tire.tif');
+th = imadjust(t, [], [], 0.5);
+imshow(t);
+figure;
+imshow(th);</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Histogram Operations Section -->
+        <section class="section" id="advanced-histogram">
+            <div class="card">
+                <h2>Advanced Histogram Operations</h2>
+                <div class="definition">
+                    <p>Beyond basic histogram stretching, MATLAB provides advanced histogram manipulation techniques for automatic image enhancement.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Histogram Equalization</h3>
+                    <p>An automatic procedure that doesn't require user input for contrast enhancement.</p>
+                    <pre><code>
+% Perform histogram equalization
+p = imread('pout.tif');
+ph = histeq(p);
+imshow(ph);
+figure;
+imhist(ph);
+axis tight;</code></pre>
+                </div>
+                <div class="method-card">
+                    <h3>Advanced imadjust Usage</h3>
+                    <p>The imadjust function supports various parameters for fine-tuned adjustments:</p>
+                    <pre><code>
+% Basic stretching
+adjusted = imadjust(img, [low_in high_in], [low_out high_out]);
+
+% With gamma correction
+gamma_adjusted = imadjust(img, [], [], gamma);</code></pre>
+                </div>
+                <div class="important-note">
+                    <h3>Gamma Parameter</h3>
+                    <ul>
+                        <li>gamma < 1: Enhances dark regions (concave downward)</li>
+                        <li>gamma = 1: Linear mapping (default)</li>
+                        <li>gamma > 1: Enhances bright regions (concave upward)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Piecewise Linear Stretching Section -->
+        <section class="section" id="piecewise-stretching">
+            <div class="card">
+                <h2>Piecewise Linear Stretching</h2>
+                <div class="definition">
+                    <p>A technique that allows different stretching factors for different intensity ranges, providing more control over the contrast enhancement process.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Implementation</h3>
+                    <p>The stretching function is defined by multiple linear segments, each with its own slope:</p>
+                    <pre><code>
+% Example equation for one segment
+j = (14 - 2)/(9 - 5) * (i - 5) + 2;
+
+% Using find for implementation
+idx = find(img >= a_i & img <= a_i_plus_1);
+result(idx) = slope * (img(idx) - a_i) + b_i;</code></pre>
+                </div>
+                <div class="important-note">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Fine control over specific intensity ranges</li>
+                        <li>Better preservation of details</li>
+                        <li>Customizable enhancement for different image regions</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -138,33 +280,74 @@ y = Cx       % Multiplication by constant
         <!-- Thresholding Section -->
         <section class="section" id="thresholding">
             <div class="card">
-                <h2>5.4 Thresholding</h2>
+                <h2>Thresholding</h2>
                 <div class="definition">
-                    <p>Thresholding is a point processing operation that converts grayscale images to binary images based on a threshold value.</p>
+                    <p>Thresholding converts a grayscale image into a binary (black and white) image by choosing a threshold value T. Pixels with values above T become white, while those below become black.</p>
                 </div>
                 <div class="method-card">
-                    <h3>Thresholding Process</h3>
+                    <h3>Thresholding Types</h3>
                     <ul>
-                        <li>Choose a threshold value T</li>
-                        <li>Pixels > T become white (255)</li>
-                        <li>Pixels ≤ T become black (0)</li>
-                        <li>Results in binary image</li>
+                        <li><strong>Single Thresholding:</strong> Uses one threshold value
+                            <pre><code>
+% Basic thresholding
+r = imread('rice.tif');
+binary_image = r > 110;
+imshow(binary_image);</code></pre>
+                        </li>
+                        <li><strong>Double Thresholding:</strong> Uses two threshold values
+                            <pre><code>
+% Double thresholding
+binary_image = (r >= T1) & (r <= T2);</code></pre>
+                        </li>
+                    </ul>
+                </div>
+                <div class="important-note">
+                    <h3>Applications</h3>
+                    <ul>
+                        <li>Object Segmentation</li>
+                        <li>Text Extraction</li>
+                        <li>Medical Image Analysis</li>
+                        <li>Quality Control</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Applications Section -->
-        <section class="section" id="applications">
+        <!-- Cross-Correlation Section -->
+        <section class="section" id="cross-correlation">
             <div class="card">
-                <h2>5.5 Applications of Thresholding</h2>
-                <div class="characteristic-card">
-                    <h3>Common Applications</h3>
+                <h2>Cross-Correlation</h2>
+                <div class="definition">
+                    <p>Cross-correlation is a powerful technique used to locate known targets within an image. It is particularly useful in pattern matching and feature detection tasks.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Key Applications</h3>
                     <ul>
-                        <li>Object segmentation</li>
-                        <li>Text extraction</li>
-                        <li>Document processing</li>
-                        <li>Quality control inspection</li>
+                        <li><strong>Pattern Matching:</strong> Finding specific patterns or objects in images</li>
+                        <li><strong>Text Detection:</strong> Locating text in images with varying backgrounds</li>
+                        <li><strong>Feature Detection:</strong> Identifying specific features or landmarks</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h3>Example Usage</h3>
+                    <pre><code>
+% Load the main image and the template
+main_img = imread('text.tif');
+template = imread('template.tif');
+
+% Perform cross-correlation
+c = normxcorr2(template, main_img);
+
+% Find the peak correlation
+[max_c, imax] = max(abs(c(:)));
+[ypeak, xpeak] = ind2sub(size(c), imax);</code></pre>
+                </div>
+                <div class="important-note">
+                    <h3>Considerations</h3>
+                    <ul>
+                        <li>Template size affects computation time</li>
+                        <li>Background complexity can impact results</li>
+                        <li>Normalization helps handle intensity variations</li>
                     </ul>
                 </div>
             </div>
@@ -175,11 +358,15 @@ y = Cx       % Multiplication by constant
     <nav class="quick-nav">
         <ul>
             <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#arithmetic">Arithmetic Operations</a></li>
-            <li><a href="#brightness">Brightness Effects</a></li>
+            <li><a href="#arithmetic-operations">Arithmetic Operations</a></li>
+            <li><a href="#information-loss">Information Loss</a></li>
+            <li><a href="#image-complement">Image Complement</a></li>
             <li><a href="#histograms">Histograms</a></li>
+            <li><a href="#histogram-stretching">Histogram Stretching</a></li>
+            <li><a href="#advanced-histogram">Advanced Histogram</a></li>
+            <li><a href="#piecewise-stretching">Piecewise Stretching</a></li>
             <li><a href="#thresholding">Thresholding</a></li>
-            <li><a href="#applications">Applications</a></li>
+            <li><a href="#cross-correlation">Cross-Correlation</a></li>
         </ul>
     </nav>
 
