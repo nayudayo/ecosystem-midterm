@@ -1,5 +1,6 @@
 .env
-/image-analyzer
+/image-analyzer/node_modules
+/image-analyzer/__pycache__
 /images
 
 /chapter-1/data*

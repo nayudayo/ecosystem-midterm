@@ -1,0 +1,14 @@
+{
+  "name": "image-analyzer",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Analyze images using OpenAI Vision API",
+  "main": "image-parser.js",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "openai": "^4.89.0"
+  },
+  "scripts": {
+    "start": "node image-parser.js"
+  }
+}

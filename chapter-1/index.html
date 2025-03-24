@@ -33,6 +33,24 @@
       .home-button::before {
           font-size: 1.2em;
       }
+
+      .image-container {
+          margin: 2rem 0;
+          text-align: center;
+      }
+
+      .section-image {
+          max-width: 100%;
+          height: auto;
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+      }
+
+      .image-caption {
+          margin-top: 1rem;
+          font-style: italic;
+          color: var(--text-secondary);
+      }
   </style>
 </head>
 <body>
@@ -51,7 +69,14 @@
                 <h2>Introduction to Digital Image Processing</h2>
                 <div class="definition">
                     <p>Digital Image Processing is the manipulation of digital images through computer algorithms. It focuses on enhancing image quality, extracting useful information, and facilitating image analysis.</p>
+                    <p>In digital image processing, we focus on single images or 'snapshots.' These images can represent anything—people, nature, microscopic components, or medical scans. Every image contains valuable information that can be analyzed and understood.</p>
                 </div>
+
+                <div class="characteristic-card">
+                    <h3>Visual Perception</h3>
+                    <p>Humans rely heavily on vision to understand the world. We can quickly identify faces, distinguish colors, and process large amounts of visual information. However, what we see is constantly changing—buildings, landscapes, and even shadows appear different depending on the time of day or lighting.</p>
+                </div>
+
                 <div class="characteristic-card">
                     <h3>Key Applications</h3>
                     <ul>
@@ -59,6 +84,49 @@
                         <li>Remote sensing</li>
                         <li>Digital photography</li>
                     </ul>
+                </div>
+
+                <div class="characteristic-card">
+                    <h3>Purpose</h3>
+                    <ul>
+                        <li>To enhance image quality</li>
+                        <li>Extract useful information</li>
+                        <li>Facilitate image analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is Image Processing Section -->
+        <section class="section" id="what-is">
+            <div class="card">
+                <h2>What is Image Processing?</h2>
+                <div class="definition">
+                    <p>Image processing involves changing the nature of an image to either:</p>
+                    <ol>
+                        <li>Improve its pictorial information for human interpretation</li>
+                        <li>Render it more suitable for autonomous machine perception</li>
+                    </ol>
+                </div>
+
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Key Aspects</h3>
+                        <ul>
+                            <li>Uses computer algorithms to process digital images</li>
+                            <li>Involves two distinct but equally important aspects</li>
+                            <li>Different requirements for humans vs machines</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Human vs Machine Preferences</h3>
+                        <ul>
+                            <li>Humans prefer sharp, clear, and detailed images</li>
+                            <li>Machines work better with simple, uncluttered images</li>
+                            <li>A procedure that makes an image 'look better' may be unsuitable for machine processing</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -84,6 +152,48 @@
             </div>
         </section>
 
+        <!-- Applications Section -->
+        <section class="section" id="applications">
+            <div class="card">
+                <h2>Some Applications</h2>
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Medicine</h3>
+                        <p>Inspection and interpretation of:</p>
+                        <ul>
+                            <li>X-rays</li>
+                            <li>MRI scans</li>
+                            <li>CT scans</li>
+                            <li>Cell images</li>
+                            <li>Chromosome karyotypes</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Agriculture</h3>
+                        <p>Applications include:</p>
+                        <ul>
+                            <li>Satellite/aerial views of land</li>
+                            <li>Land use analysis</li>
+                            <li>Crop suitability assessment</li>
+                            <li>Inspection of fruit and vegetables</li>
+                            <li>Quality assessment of produce</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Law Enforcement</h3>
+                        <p>Key uses:</p>
+                        <ul>
+                            <li>Fingerprint analysis</li>
+                            <li>Sharpening of speed-camera images</li>
+                            <li>De-blurring of surveillance footage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Image Processing Types -->
         <section class="section" id="processing-types">
             <div class="card">
@@ -92,21 +202,85 @@
                 <div class="example">
                     <h3>1. Enhancing Image Sharpness</h3>
                     <p>Image sharpening enhances the edges of an image to make it appear clearer and more defined. This is particularly important in printing where images need to appear at their best on the printed page.</p>
+                    <div class="image-container">
+                        <img src="images/Intro_editedversion_freeElective_report-07.png" 
+                             alt="Comparison of original and sharpened images"
+                             class="section-image">
+                        <p class="image-caption">Left: Original image, Right: After sharpening</p>
+                    </div>
                 </div>
 
                 <div class="example">
                     <h3>2. Removing Noise</h3>
                     <p>Noise refers to random errors in the image that can occur during data transmission. Different types of noise require different removal methods.</p>
+                    <div class="image-container">
+                        <img src="images/Intro_editedversion_freeElective_report-08.png" 
+                             alt="Comparison of noisy and denoised images"
+                             class="section-image">
+                        <p class="image-caption">Left: Image with noise, Right: After noise removal</p>
+                    </div>
                 </div>
 
                 <div class="example">
                     <h3>3. Removing Motion Blur</h3>
                     <p>Motion blur occurs when the shutter speed is too slow for the moving object. Deblurring techniques can help recover details like numberplates and other fine features.</p>
+                    <div class="image-container">
+                        <img src="images/Intro_editedversion_freeElective_report-09.png" 
+                             alt="Comparison of motion blurred and deblurred images"
+                             class="section-image">
+                        <p class="image-caption">Left: Motion blurred image, Right: After deblurring</p>
+                    </div>
                 </div>
 
                 <div class="example">
                     <h3>4. Edge Detection</h3>
                     <p>Edge detection is crucial for measuring objects in images. It helps identify boundaries and calculate areas within them.</p>
+                    <div class="image-container">
+                        <img src="images/Intro_editedversion_freeElective_report-10.png" 
+                             alt="Comparison of original and edge detected images"
+                             class="section-image">
+                        <p class="image-caption">Left: Original image, Right: After edge detection</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aspects of Image Processing -->
+        <section class="section" id="aspects">
+            <div class="card">
+                <h2>Aspects of Image Processing</h2>
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Image Enhancement</h3>
+                        <p>Processing an image for specific applications:</p>
+                        <ul>
+                            <li>Sharpening or de-blurring</li>
+                            <li>Highlighting edges</li>
+                            <li>Improving contrast</li>
+                            <li>Brightening images</li>
+                            <li>Removing noise</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Image Restoration</h3>
+                        <p>Reversing known damage:</p>
+                        <ul>
+                            <li>Removing linear motion blur</li>
+                            <li>Removing optical distortions</li>
+                            <li>Removing periodic interference</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Image Segmentation</h3>
+                        <p>Subdividing images to isolate:</p>
+                        <ul>
+                            <li>Finding specific shapes</li>
+                            <li>Identifying objects in aerial photos</li>
+                            <li>Separating distinct image components</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -125,6 +299,12 @@
                             <li>Fingerprints</li>
                             <li>Architectural plans</li>
                         </ul>
+                        <div class="image-container">
+                            <img src="images/Intro_editedversion_freeElective_report-17.png" 
+                                 alt="A binary image representation with black and white pixels."
+                                 class="section-image">
+                            <p class="image-caption">Example of a binary image showing edges in white against a black background</p>
+                        </div>
                     </div>
 
                     <div class="characteristic-card">
@@ -135,16 +315,84 @@
                             <li>Printed works</li>
                             <li>Natural object recognition</li>
                         </ul>
+                        <div class="image-container">
+                            <img src="images/Intro_editedversion_freeElective_report-18.png" 
+                                 alt="A greyscale image showing a narrow alleyway with a person walking"
+                                 class="section-image">
+                            <p class="image-caption">Example of a greyscale image showing an alleyway scene</p>
+                        </div>
                     </div>
 
                     <div class="characteristic-card">
                         <h3>RGB Color Images</h3>
                         <p>Each pixel has red, green, and blue components (24-bit color), allowing for 16,777,216 possible colors.</p>
+                        <div class="image-container">
+                            <img src="images/Intro_editedversion_freeElective_report-20.png" 
+                                 alt="A bouquet of flowers in a vase showcasing various colors."
+                                 class="section-image">
+                            <p class="image-caption">Example of an RGB color image showing rich color variety</p>
+                        </div>
                     </div>
 
                     <div class="characteristic-card">
                         <h3>Indexed Color Images</h3>
                         <p>Uses a color map or palette, with each pixel storing an index to the color rather than the color itself.</p>
+                        <div class="image-container">
+                            <img src="images/Intro_editedversion_freeElective_report-22.png" 
+                                 alt="An emu standing in a natural setting next to a matrix of indexed colour values."
+                                 class="section-image">
+                            <p class="image-caption">Example of an indexed color image with its corresponding color indices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image File Sizes -->
+        <section class="section" id="file-sizes">
+            <div class="card">
+                <h2>Image File Sizes</h2>
+                <div class="important-note">
+                    <p>Image files tend to be large. Here's how different image types affect file size:</p>
+                </div>
+
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Binary Image (512 x 512)</h3>
+                        <ul>
+                            <li>Total bits: 512 x 512 x 1 = 262,144</li>
+                            <li>Size in bytes: 32,768 bytes</li>
+                            <li>Size in KB: 32.768 KB</li>
+                            <li>Size in MB: 0.033 MB</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Greyscale Image (512 x 512)</h3>
+                        <ul>
+                            <li>Total bits: 512 x 512 x 8</li>
+                            <li>Size in KB: 262.14 KB</li>
+                            <li>Size in MB: 0.262 MB</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Color Image (512 x 512)</h3>
+                        <ul>
+                            <li>Total bytes: 512 x 512 x 3 = 786,432</li>
+                            <li>Size in KB: 786.43 KB</li>
+                            <li>Size in MB: 0.786 MB</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Information Equivalence</h3>
+                        <p>A picture worth 1000 words equals:</p>
+                        <ul>
+                            <li>1000 words × 10 chars/word</li>
+                            <li>10,000 chars × 8 bits/char</li>
+                            <li>Total: 80,000 bits of information</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -176,13 +424,37 @@
                         <li>Recognizing and interpreting the image with the visual cortex in the brain</li>
                     </ol>
                 </div>
-                <div class="characteristic-card">
-                    <h3>Key Perception Phenomena</h3>
-                    <ul>
-                        <li>Background affects perceived intensity</li>
-                        <li>Non-existent intensities can be perceived in continuous gradients</li>
-                        <li>Visual overshooting and undershooting at boundaries</li>
-                    </ul>
+                
+                <div class="distribution-grid">
+                    <div class="characteristic-card">
+                        <h3>Background Effect</h3>
+                        <p>A single block of grey will appear:</p>
+                        <ul>
+                            <li>Darker on white background</li>
+                            <li>Lighter on black background</li>
+                            <li>We perceive grey scales relative to their surroundings</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Continuous Gradients</h3>
+                        <p>In continuously varying grey levels:</p>
+                        <ul>
+                            <li>We may observe non-existent intensities</li>
+                            <li>Our eyes perceive horizontal edges even in smooth gradients</li>
+                            <li>Light to dark transitions create visual artifacts</li>
+                        </ul>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Boundary Effects</h3>
+                        <p>At intensity boundaries:</p>
+                        <ul>
+                            <li>Visual system tends to overshoot or undershoot</li>
+                            <li>Creates perceived intensity differences</li>
+                            <li>Affects interpretation of object boundaries</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -192,9 +464,12 @@
     <nav class="quick-nav">
         <ul>
             <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#what-is">What is Image Processing?</a></li>
             <li><a href="#overview">Overview</a></li>
             <li><a href="#processing-types">Processing Types</a></li>
+            <li><a href="#aspects">Aspects of Image Processing</a></li>
             <li><a href="#image-types">Image Types</a></li>
+            <li><a href="#file-sizes">Image File Sizes</a></li>
             <li><a href="#acquisition">Acquisition</a></li>
             <li><a href="#perception">Perception</a></li>
         </ul>

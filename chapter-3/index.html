@@ -86,18 +86,46 @@
                 <div class="definition">
                     <p>A digital image consists of a grid of pixels, where each pixel represents a small portion of the image. Each pixel has a numerical value that defines its intensity or color.</p>
                 </div>
+
+                <!-- Types of Digital Images -->
                 <div class="distribution-grid">
                     <div class="characteristic-card">
                         <h3>Greyscale Images</h3>
-                        <p>Each pixel has a range of intensities from black to white</p>
+                        <p>Each pixel has a range of intensities from 0 (black) to 255 (white). These images contain only shades of gray and are stored as 2D matrices where each element represents a pixel's brightness.</p>
+                        <div class="example">
+                            <h4>Common Applications</h4>
+                            <ul>
+                                <li>Medical Imaging (X-rays, CT scans)</li>
+                                <li>Document Scanning with OCR</li>
+                                <li>Face Detection and Biometric Analysis</li>
+                            </ul>
+                        </div>
                     </div>
+
                     <div class="characteristic-card">
                         <h3>RGB Images</h3>
-                        <p>Each pixel consists of three color components: Red, Green, and Blue</p>
+                        <p>Each pixel consists of three color components: Red, Green, and Blue. RGB images are stored as three-dimensional arrays containing red, green, and blue channels.</p>
+                        <div class="example">
+                            <h4>Accessing Color Channels</h4>
+                            <pre><code>
+redChannel = a(:, :, 1);   % Extract red
+greenChannel = a(:, :, 2); % Extract green
+blueChannel = a(:, :, 3);  % Extract blue
+                            </code></pre>
+                        </div>
                     </div>
+
                     <div class="characteristic-card">
                         <h3>Indexed Colour Images</h3>
-                        <p>Uses a colormap where each pixel value points to a specific color</p>
+                        <p>Uses a colormap where each pixel value points to a specific color in a predefined list. This format is efficient for storage and is particularly useful when working with a limited color palette.</p>
+                        <div class="advantages">
+                            <h4>Advantages</h4>
+                            <ul>
+                                <li>Reduced file size and data storage needs</li>
+                                <li>Faster loading and rendering performance</li>
+                                <li>Memory efficient for devices with limited resources</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,6 +142,7 @@
                     </code></pre>
                     <p class="important-note">Note: The semicolon prevents output display of the large matrix</p>
                 </div>
+
                 <div class="example">
                     <h3>Displaying Images</h3>
                     <pre><code>
@@ -122,6 +151,7 @@
 >> pixval on          % Enable pixel value display
                     </code></pre>
                 </div>
+
                 <div class="method-card">
                     <h3>Important Commands</h3>
                     <ul>
@@ -130,6 +160,35 @@
                         <li><strong>figure:</strong> Creates new display window</li>
                         <li><strong>pixval:</strong> Shows pixel values on hover</li>
                     </ul>
+                </div>
+
+                <!-- Image Information Section -->
+                <div class="subsection">
+                    <h3>Getting Image Information</h3>
+                    <p>Use the imfinfo function to retrieve detailed information about an image file:</p>
+                    <pre><code>
+>> imfinfo('image.tif')    % Get detailed image information
+                    </code></pre>
+                    <div class="info-card">
+                        <h4>Retrieved Information Includes:</h4>
+                        <ul>
+                            <li>Filename and FileModDate</li>
+                            <li>FileSize in bytes</li>
+                            <li>Width and Height in pixels</li>
+                            <li>BitDepth and ColorType</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pixel Value Access -->
+                <div class="subsection">
+                    <h3>Accessing Pixel Values</h3>
+                    <p>For RGB images, you can retrieve pixel values using impixel:</p>
+                    <pre><code>
+>> impixel(a,200,100)    % Get RGB values at column 200, row 100
+>> a(100, 200, :)        % Alternative way to get RGB values
+                    </code></pre>
+                    <p class="note">Note: For grayscale images, impixel returns three identical values since there's only one intensity value per pixel.</p>
                 </div>
             </div>
         </section>
@@ -152,6 +211,37 @@
                 </div>
             </div>
         </section>
+
+        <!-- Data Types and Conversions Section -->
+        <section class="section" id="data-types">
+            <div class="card">
+                <h2>Data Types and Conversions</h2>
+                <div class="definition">
+                    <p>Understanding data types is crucial for efficient memory management and error-free image processing. MATLAB provides various functions for converting between different image types.</p>
+                </div>
+
+                <div class="example">
+                    <h3>Image Type Conversion Functions</h3>
+                    <pre><code>
+y = ind2gray(x,map);     % Indexed to grayscale
+[y,map] = gray2ind(x);   % Grayscale to indexed
+y = rgb2gray(x);         % RGB to grayscale
+y = gray2rgb(x);         % Grayscale to RGB
+[y,map] = rgb2ind(x);    % RGB to indexed
+y = ind2rgb(x,map);      % Indexed to RGB
+                    </code></pre>
+                </div>
+
+                <div class="characteristic-card">
+                    <h3>Common Data Types</h3>
+                    <ul>
+                        <li><strong>uint8:</strong> Unsigned 8-bit integers (0-255)</li>
+                        <li><strong>double:</strong> Double-precision floating-point</li>
+                        <li><strong>logical:</strong> Binary values (0 or 1)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Quick Navigation -->
@@ -162,6 +252,7 @@
             <li><a href="#digital-images">Digital Images</a></li>
             <li><a href="#working-with-images">Working with Images</a></li>
             <li><a href="#image-processing">Image Processing</a></li>
+            <li><a href="#data-types">Data Types</a></li>
         </ul>
     </nav>
 

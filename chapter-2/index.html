@@ -52,6 +52,17 @@
                 <div class="definition">
                     <p>MATLAB is a data analysis and visualization tool which has been designed with powerful support for matrices and matrix operations. It has excellent graphics capabilities, and its own powerful programming language.</p>
                 </div>
+
+
+                <div class="example">
+                    <h3>Example Commands</h3>
+                    <pre><code>
+>> sin(pi/3)              % Calculates the sine of pi/3
+>> c = imread('cameraman.tif')    % Reads an image file
+>> a = imclose(b)         % Applies morphological closing
+                    </code></pre>
+                </div>
+
                 <div class="characteristic-card">
                     <h3>Key Concepts</h3>
                     <ul>
@@ -61,6 +72,7 @@
                         <li>All data in MATLAB is treated as matrices</li>
                     </ul>
                 </div>
+
                 <div class="method-card">
                     <h3>Data Types in MATLAB</h3>
                     <ul>
@@ -79,16 +91,37 @@
                 <div class="definition">
                     <p>MATLAB is command line driven; all commands are entered after the prompt symbol (>>). It supports standard arithmetic operations and provides various output formats.</p>
                 </div>
+
+
                 <div class="example">
                     <h3>Basic Operations</h3>
                     <pre><code>
 >> 2+2    % Addition
+ans = 4
+
 >> 3*4    % Multiplication
+ans = 12
+
 >> 7-3    % Subtraction
+ans = 4
+
 >> 11/7   % Division
+ans = 1.5714
+
 >> 2^5    % Exponentiation
+ans = 32
+
 >> format long  % Change output format
                     </code></pre>
+                </div>
+
+                <div class="characteristic-card">
+                    <h3>Command Window Features</h3>
+                    <ul>
+                        <li>A blank window for entering commands</li>
+                        <li>Prompt consists of two right arrows (>>)</li>
+                        <li>Immediate feedback after each command</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -140,14 +173,98 @@ format long; a        % Displays full precision
                 <div class="definition">
                     <p>Matrices are the fundamental data structure in MATLAB. Understanding how to work with matrices is essential for effective MATLAB programming.</p>
                 </div>
-                <div class="characteristic-card">
-                    <h3>Matrix Operations</h3>
-                    <ul>
-                        <li>Element access and modification</li>
-                        <li>Matrix arithmetic</li>
-                        <li>Matrix functions</li>
-                        <li>Matrix manipulation</li>
-                    </ul>
+
+                <!-- Matrix Elements -->
+                <div class="subsection">
+                    <h3>2.4.1 Matrix Elements</h3>
+                    <div class="example">
+                        <h4>Accessing Elements</h4>
+                        <pre><code>
+>> a(2,3)      % Returns element in row 2, column 3
+>> a(10)       % Single number indexing
+>> 2:3:16      % Generates a vector of values
+>> a(2, 1:3)   % Returns values in row 2, columns 1-3
+>> a(2:4,3)    % Returns column 3, rows 2-4
+                        </code></pre>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Colon Operator</h3>
+                        <pre><code>
+>> a(2:3,3:4)  % Lists 2x2 block from rows 2-3, cols 3-4
+>> a(3, :)     % Gets all elements of row 3
+>> a(:, 2)     % Gets all elements of column 2
+                        </code></pre>
+                    </div>
+                </div>
+
+                <!-- Matrix Operations -->
+                <div class="subsection">
+                    <h3>2.4.2 Matrix Operations</h3>
+                    <div class="example">
+                        <h4>Basic Operations</h4>
+                        <pre><code>
+>> b=[2 4 -7 -4; 5 6 3 -2; 1 -8 -5 -3; 0 -6 7 -1]
+>> 2*a-3*b     % Scalar multiplication and subtraction
+>> a^3*b^4     % Matrix powers and multiplication
+>> inv(a)      % Matrix inversion
+>> a'          % Matrix transpose
+>> flipud(a)   % Flip matrix up/down
+>> fliplr(a)   % Flip matrix left/right
+>> rot90(a)    % Rotate matrix by 90 degrees
+                        </code></pre>
+                    </div>
+
+                    <div class="example">
+                        <h4>Reshape and Dot Operations</h4>
+                        <pre><code>
+>> c=[1:20]    % Create vector
+>> reshape(c,4,5)  % Reshape into 4x5 matrix
+>> a.*b        % Element-wise multiplication
+>> a.^2        % Element-wise square
+>> 1./a        % Element-wise reciprocal
+                        </code></pre>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <h3>Special Matrices</h3>
+                        <ul>
+                            <li>zeros(n) - Creates n×n matrix of zeros</li>
+                            <li>ones(m,n) - Creates m×n matrix of ones</li>
+                            <li>rand() - Random numbers in [0,1]</li>
+                            <li>randn() - Normal distribution random numbers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plots Section -->
+        <section class="section" id="plots">
+            <div class="card">
+                <h2>2.5 Plots</h2>
+                <div class="definition">
+                    <p>MATLAB has outstanding graphics capabilities. You can create plots using vectors of x and y coordinates.</p>
+                </div>
+
+                <div class="example">
+                    <h3>Basic Plotting</h3>
+                    <pre><code>
+>> x=[0:0.1:2*pi];        % Create x vector
+>> plot(x,sin(x))         % Plot sine function
+>> plot(x,sin(x),'.',x,cos(x),'o')  % Plot multiple functions
+                    </code></pre>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Help Section -->
+        <section class="section" id="help">
+            <div class="card">
+                <h2>Help in MATLAB</h2>
+                <div class="definition">
+                    <p>MATLAB comes with a vast amount of online help and information. To obtain information on a particular command, you can use the help function.</p>
                 </div>
             </div>
         </section>
@@ -161,6 +278,8 @@ format long; a        % Displays full precision
             <li><a href="#variables">Variables</a></li>
             <li><a href="#workspace">Workspace</a></li>
             <li><a href="#matrices">Matrices</a></li>
+            <li><a href="#plots">Plots</a></li>
+            <li><a href="#help">Help</a></li>
         </ul>
     </nav>
 
