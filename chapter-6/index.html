@@ -48,36 +48,89 @@
         <!-- Introduction Section -->
         <section class="section" id="introduction">
             <div class="card">
-                <h2>6.1 Introduction to Linear Filters</h2>
+                <h2>6.1 Introduction to Spatial Filtering</h2>
                 <div class="definition">
-                    <p>Linear filters process images by applying mathematical operations to a local neighborhood of pixels using a mask (or kernel).</p>
+                    <p>Spatial filtering is a fundamental technique in image processing that manipulates pixel values based on their neighbors. It is used to enhance images, reduce noise, and extract features.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Three Steps of Spatial Filtering</h3>
+                    <ol>
+                        <li>Position the mask over the current pixel</li>
+                        <li>Form products of filter elements with corresponding neighborhood elements</li>
+                        <li>Sum all the products to get the final value</li>
+                    </ol>
                 </div>
                 <div class="example">
                     <h3>Example with 5x5 Matrix</h3>
                     <pre><code>
->> x = uint8(10 * magic(5))    % Create test matrix
->> mean2(x(1:3,1:3))           % Calculate average of first 3x3 region
->> mean2(x(1:3,2:4))           % Calculate average of shifted region
-                    </code></pre>
+% Create a test matrix
+x = uint8(10 * magic(5))
+
+% Calculate averages of different 3x3 regions
+mean2(x(1:3,1:3))    % First region
+mean2(x(1:3,2:4))    % Shifted region</code></pre>
                 </div>
             </div>
         </section>
 
-        <!-- Notation Section -->
-        <section class="section" id="notation">
+        <!-- Linear Filters Section -->
+        <section class="section" id="linear-filters">
             <div class="card">
-                <h2>6.2 Filter Notation</h2>
+                <h2>6.2 Linear Filters</h2>
                 <div class="definition">
-                    <p>Linear filters are described using coefficient matrices that specify how pixel values within the mask are combined.</p>
+                    <p>A linear filter is applied by multiplying each element in the mask with the corresponding element in the pixel neighborhood and summing all the products.</p>
                 </div>
                 <div class="method-card">
-                    <h3>Averaging Filter Example</h3>
-                    <pre><code>
-[ 1/9  1/9  1/9 ]
-[ 1/9  1/9  1/9 ]
-[ 1/9  1/9  1/9 ]
-                    </code></pre>
-                    <p>Each coefficient represents the weight applied to the corresponding pixel in the mask.</p>
+                    <h3>Common Linear Filters</h3>
+                    <ul>
+                        <li><strong>Averaging Filter:</strong>
+                            <pre><code>
+% Create a 3x3 averaging filter
+a = ones(3,3)/9    % All elements are 1/9 ≈ 0.1111</code></pre>
+                        </li>
+                        <li><strong>Gaussian Filter:</strong>
+                            <pre><code>
+% Create a Gaussian filter
+h = fspecial('gaussian', [3 3], 0.5);</code></pre>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MATLAB Implementation Section -->
+        <section class="section" id="matlab-implementation">
+            <div class="card">
+                <h2>6.3 Filtering in MATLAB</h2>
+                <div class="definition">
+                    <p>MATLAB provides several functions for applying filters to images, with different options for handling boundaries and output sizes.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Key Functions</h3>
+                    <ul>
+                        <li><strong>filter2:</strong> Basic 2D filtering
+                            <pre><code>
+% Apply filter with 'same' size output
+result = filter2(a, x, 'same');
+
+% Apply filter with 'valid' region only
+result = filter2(a, x, 'valid');</code></pre>
+                        </li>
+                        <li><strong>imfilter:</strong> Advanced filtering options
+                            <pre><code>
+% Apply filter with edge replication
+result = imfilter(img, h, 'replicate');</code></pre>
+                        </li>
+                    </ul>
+                </div>
+                <div class="important-note">
+                    <h3>Display Considerations</h3>
+                    <p>Since MATLAB stores filtered results as double precision, use appropriate display methods:</p>
+                    <ul>
+                        <li>Convert to uint8: <code>imshow(uint8(result))</code></li>
+                        <li>Normalize: <code>imshow(result/255)</code></li>
+                        <li>Auto-scale: <code>imshow(mat2gray(result))</code></li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -85,91 +138,244 @@
         <!-- Edge Handling Section -->
         <section class="section" id="edge-handling">
             <div class="card">
-                <h2>6.3 Handling Image Edges</h2>
+                <h2>6.3 Edge Handling</h2>
                 <div class="definition">
-                    <p>Special consideration is needed when applying filters near image edges where the mask extends beyond the image boundaries.</p>
+                    <p>When applying filters near image edges, the mask may extend beyond the image boundaries. There are several approaches to handle this situation:</p>
+                </div>
+                <div class="method-card">
+                    <h3>Edge Handling Methods</h3>
+                    <ul>
+                        <li><strong>Ignore Edges:</strong> Only process pixels where the mask fits entirely within the image
+                            <ul>
+                                <li>Results in smaller output image</li>
+                                <li>No artifacts but loses edge information</li>
+                            </ul>
+                        </li>
+                        <li><strong>Zero Padding:</strong> Assume zeros outside image boundaries
+                            <ul>
+                                <li>Maintains original image size</li>
+                                <li>May create dark artifacts at edges</li>
+                            </ul>
+                        </li>
+                        <li><strong>Edge Replication:</strong> Repeat edge pixels
+                            <ul>
+                                <li>Preserves edge intensity values</li>
+                                <li>Better for smoothing operations</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h3>MATLAB Implementation</h3>
+                    <pre><code>
+% Using 'valid' option (ignore edges)
+result_valid = filter2(h, img, 'valid');
+
+% Using 'same' option (zero padding)
+result_same = filter2(h, img, 'same');
+
+% Using edge replication
+result_replicate = imfilter(img, h, 'replicate');</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Average Filtering Section -->
+        <section class="section" id="average-filtering">
+            <div class="card">
+                <h2>6.4 Average Filtering</h2>
+                <div class="definition">
+                    <p>Average filtering is a technique used to reduce noise in images by averaging the pixel values in a neighborhood.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Implementation Steps</h3>
+                    <ol>
+                        <li>Read the image using imread</li>
+                        <li>Convert to grayscale if necessary</li>
+                        <li>Create averaging filter</li>
+                        <li>Apply filter using filter2 or imfilter</li>
+                    </ol>
+                    <pre><code>
+% Complete example
+img = imread('noisy.tif');
+if size(img,3) == 3
+    img = rgb2gray(img);
+end
+h = ones(3,3)/9;
+filtered = imfilter(img, h, 'replicate');</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Frequency Components Section -->
+        <section class="section" id="frequency-components">
+            <div class="card">
+                <h2>6.5 Low and High Frequencies</h2>
+                <div class="definition">
+                    <p>Images can be processed to extract or suppress different frequency components, which correspond to different types of features.</p>
                 </div>
                 <div class="distribution-grid">
                     <div class="characteristic-card">
-                        <h3>Common Solutions</h3>
+                        <h3>Low-Pass Filtering</h3>
                         <ul>
-                            <li>Padding with zeros</li>
-                            <li>Extending edge values</li>
-                            <li>Mirroring the image</li>
-                            <li>Circular wrapping</li>
+                            <li>Smooths the image</li>
+                            <li>Reduces noise</li>
+                            <li>Blurs edges</li>
                         </ul>
                     </div>
                     <div class="characteristic-card">
-                        <h3>Considerations</h3>
+                        <h3>High-Pass Filtering</h3>
                         <ul>
-                            <li>Impact on filter output</li>
-                            <li>Edge preservation</li>
-                            <li>Computational efficiency</li>
-                            <li>Application requirements</li>
+                            <li>Enhances edges</li>
+                            <li>Sharpens details</li>
+                            <li>Highlights transitions</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Implementation Section -->
-        <section class="section" id="implementation">
+        <!-- Gaussian Filters Section -->
+        <section class="section" id="gaussian-filters">
             <div class="card">
-                <h2>6.4 Filter Implementation</h2>
-                <div class="example">
-                    <h3>MATLAB Implementation</h3>
-                    <pre><code>
-% Define a 3x3 averaging filter
-h = ones(3,3) / 9;
-
-% Apply filter to image
-filtered_img = imfilter(original_img, h);
-
-% Apply filter with edge handling
-filtered_img = imfilter(original_img, h, 'replicate');
-                    </code></pre>
+                <h2>6.5 Gaussian Filters</h2>
+                <div class="definition">
+                    <p>Gaussian filters are widely used for image smoothing and noise reduction. They apply weights based on a Gaussian (normal) distribution, giving more importance to central pixels.</p>
                 </div>
                 <div class="method-card">
-                    <h3>Key Functions</h3>
+                    <h3>Implementation with imgaussfilt</h3>
+                    <pre><code>
+% Read and prepare image
+I = imread('image.jpg');
+I = rgb2gray(I);  % Convert to grayscale if needed
+
+% Apply Gaussian filters with different parameters
+I1 = imgaussfilt(I, 0.5, 'FilterSize', 5);   % Small sigma, 5x5 filter
+I2 = imgaussfilt(I, 2, 'FilterSize', 5);     % Larger sigma, 5x5 filter
+I3 = imgaussfilt(I, 1, 'FilterSize', 11);    % Medium sigma, 11x11 filter
+I4 = imgaussfilt(I, 5, 'FilterSize', 11);    % Large sigma, 11x11 filter
+
+% Display results
+figure;
+subplot(2,2,1); imshow(I1); title('5 x 5, \sigma = 0.5');
+subplot(2,2,2); imshow(I2); title('5 x 5, \sigma = 2');
+subplot(2,2,3); imshow(I3); title('11 x 11, \sigma = 1');
+subplot(2,2,4); imshow(I4); title('11 x 11, \sigma = 5');</code></pre>
+                </div>
+                <div class="important-note">
+                    <h3>Key Parameters</h3>
                     <ul>
-                        <li><strong>imfilter:</strong> Apply linear filter to image</li>
-                        <li><strong>conv2:</strong> 2D convolution</li>
-                        <li><strong>fspecial:</strong> Create predefined filters</li>
-                        <li><strong>medfilt2:</strong> 2D median filtering</li>
+                        <li>Filter size affects computation time and blur extent</li>
+                        <li>Sigma (σ) controls blur intensity:
+                            <ul>
+                                <li>Small σ (0.5-1): Subtle smoothing</li>
+                                <li>Medium σ (1-3): Moderate blur</li>
+                                <li>Large σ (>3): Strong blur effect</li>
+                            </ul>
+                        </li>
+                        <li>Larger filter sizes needed for larger σ values</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Applications Section -->
-        <section class="section" id="applications">
+        <!-- Display Considerations Section -->
+        <section class="section" id="display-considerations">
             <div class="card">
-                <h2>6.5 Applications</h2>
-                <div class="distribution-grid">
-                    <div class="characteristic-card">
-                        <h3>Smoothing Filters</h3>
-                        <ul>
-                            <li>Noise reduction</li>
-                            <li>Image blurring</li>
-                            <li>Detail suppression</li>
-                        </ul>
-                    </div>
-                    <div class="characteristic-card">
-                        <h3>Sharpening Filters</h3>
-                        <ul>
-                            <li>Edge enhancement</li>
-                            <li>Detail emphasis</li>
-                            <li>Feature detection</li>
-                        </ul>
-                    </div>
-                    <div class="characteristic-card">
-                        <h3>Edge Detection</h3>
-                        <ul>
-                            <li>Gradient operators</li>
-                            <li>Laplacian filters</li>
-                            <li>Directional filters</li>
-                        </ul>
-                    </div>
+                <h2>6.7 Display Considerations</h2>
+                <div class="definition">
+                    <p>Different filtering operations may produce results that require specific display methods for proper visualization.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Display Methods by Filter Type</h3>
+                    <ul>
+                        <li><strong>Linear Filters (Averaging, Gaussian):</strong>
+                            <pre><code>
+% Convert to uint8 for standard display
+imshow(uint8(result));
+
+% Normalize to [0,1] range
+imshow(result/255);
+
+% Auto-scale using mat2gray
+imshow(mat2gray(result));</code></pre>
+                        </li>
+                        <li><strong>High-Pass Filters:</strong>
+                            <pre><code>
+% Scale results for better visibility
+imshow(result/100);  % For Laplacian filters
+imshow((result + 128)/255);  % Center around middle gray</code></pre>
+                        </li>
+                        <li><strong>Edge Detection Results:</strong>
+                            <pre><code>
+% Use abs for edge magnitude display
+imshow(abs(result)/max(abs(result(:))));</code></pre>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Edge Detection Section -->
+        <section class="section" id="edge-detection">
+            <div class="card">
+                <h2>6.6 Edge Detection Filters</h2>
+                <div class="definition">
+                    <p>Edge detection filters identify areas in an image where intensity changes rapidly, highlighting boundaries and features.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Common Edge Detectors</h3>
+                    <ul>
+                        <li><strong>Laplacian:</strong> Second-order derivative filter
+                            <pre><code>
+% Create and apply Laplacian filter
+f = fspecial('laplacian');
+edges = filter2(f, img);
+imshow(edges/100);</code></pre>
+                        </li>
+                        <li><strong>LoG (Laplacian of Gaussian):</strong> Combines smoothing and edge detection
+                            <pre><code>
+% Create and apply LoG filter
+log_filter = fspecial('log', [5 5], 0.5);
+edges_smooth = filter2(log_filter, img);</code></pre>
+                        </li>
+                    </ul>
+                </div>
+                <div class="important-note">
+                    <h3>Edge Enhancement Tips</h3>
+                    <ul>
+                        <li>Normalize results for better visualization</li>
+                        <li>Pre-smooth noisy images</li>
+                        <li>Adjust display scaling for optimal contrast</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Non-linear Filtering Section -->
+        <section class="section" id="nonlinear-filtering">
+            <div class="card">
+                <h2>6.6 Non-linear Filtering</h2>
+                <div class="definition">
+                    <p>Non-linear filters perform operations that cannot be expressed as a simple weighted sum of pixel values.</p>
+                </div>
+                <div class="method-card">
+                    <h3>Using nlfilter</h3>
+                    <p>The nlfilter function applies custom non-linear operations to image neighborhoods:</p>
+                    <pre><code>
+% Maximum filter example
+cmax = nlfilter(img, [3,3], 'max(x(:))');
+
+% Minimum filter example
+cmin = nlfilter(img, [3,3], 'min(x(:))');</code></pre>
+                </div>
+                <div class="important-note">
+                    <h3>Performance Note</h3>
+                    <ul>
+                        <li>nlfilter is computationally intensive</li>
+                        <li>Use specialized functions when available (e.g., medfilt2)</li>
+                        <li>Consider trade-offs between processing time and results</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -179,10 +385,15 @@ filtered_img = imfilter(original_img, h, 'replicate');
     <nav class="quick-nav">
         <ul>
             <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#notation">Filter Notation</a></li>
+            <li><a href="#linear-filters">Linear Filters</a></li>
+            <li><a href="#matlab-implementation">MATLAB Implementation</a></li>
             <li><a href="#edge-handling">Edge Handling</a></li>
-            <li><a href="#implementation">Implementation</a></li>
-            <li><a href="#applications">Applications</a></li>
+            <li><a href="#average-filtering">Average Filtering</a></li>
+            <li><a href="#frequency-components">Frequency Components</a></li>
+            <li><a href="#gaussian-filters">Gaussian Filters</a></li>
+            <li><a href="#edge-detection">Edge Detection</a></li>
+            <li><a href="#nonlinear-filtering">Non-linear Filtering</a></li>
+            <li><a href="#display-considerations">Display Considerations</a></li>
         </ul>
     </nav>
 
